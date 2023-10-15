@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta
 from typing import List, Tuple
 from calendar import monthrange
 from collections import deque
@@ -42,9 +42,7 @@ class ShiftPlanner:
         count = 0
         flag_stack = deque()
         while True:
-            if count >= len(self.workers):
-                count = 0
-            worker: Worker = self.workers[count]
+            worker: Worker = self.workers[count%len(self.workers)]
             
             #Проверка на превышения количества рабочих часов
             if worker.work_hour >= self.max_work_month:
@@ -70,8 +68,7 @@ class ShiftPlanner:
 
     def calculate_calendar(self, date: datetime):
         num_days = monthrange(date.year, date.month)[1] # Количество дней
-        # print([i for i in range(num_days)])
-        # for
+
         calendar = {}
         for i in range(1, num_days+1):
             calendar_date = datetime(year=date.year,

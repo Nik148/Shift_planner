@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, conint
 from typing import List
 
 
@@ -10,5 +10,5 @@ class GetCalendarRequest(BaseModel):
     shift_start: int
     shift_end: int
     weekdays_weight: List[int] = Field(min_length=7, max_length=7)
-    workers_count: int
+    workers_count: conint(ge=1)
     shifts_starts: List[int] 

@@ -4,6 +4,7 @@ from app.schema import GetCalendarRequest
 from app.ShiftPlanner import ShiftPlanner, Worker
 from app.doc import get_calendar_desription
 
+
 router = APIRouter(prefix="", tags=["Shift Planner"])
 
 @router.post("/get_calendar", description=get_calendar_desription)
